@@ -1,0 +1,527 @@
+body{
+    margin: 0px;
+    font-family: 'Open Sans', sans-serif;
+}
+#topbar{
+    width: 100%;
+    box-shadow: 0 2px 5px #ccc;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 16px 8%;
+}
+#hamburger{
+    display:none;
+}
+#left{
+    display: inline-flex;
+    align-items: center;
+}
+#logo{
+    font-size: 36px;
+    font-weight: 400;
+    margin-right: 16px;
+    text-decoration: none;
+    color: black;
+}
+#logo>span{
+    font-weight:bold;
+}
+.cloth{
+    text-decoration: none;
+    color: black;
+    margin-left: 32px;
+    font-weight: 600;
+}
+#search{
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+}
+#icon{
+    position: absolute;
+    color: #999;
+    font-size: 18px;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-50%);
+}
+#box{
+    width: 100%;
+    border: 1px solid rgb(245, 242, 242);
+    background-color: rgb(245, 242, 242);
+    box-sizing: border-box;
+    padding: 10px 24px 8px 48px;
+    color: black;
+    outline: none;
+}
+#right{
+    display: inline-flex;
+    align-items: center;
+}
+#shop-wrapper{
+    position: relative;
+    margin-right: 32px;
+    text-decoration: none;
+    color: black;
+}
+#item-count{
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    font-weight: 600;
+    background-color: #009688;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+}
+#right>img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.cloth-acc-section{
+    padding: 4% 8% 0;
+}
+.section-heading{
+    font-size: 28px;
+    font-weight: 600;
+    opacity: 0.8;
+    color: black;
+}
+#cloth-card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+.cloth-card{
+    width: 100%;
+    max-width: 19%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px #ccc;
+    border-radius: 5px;
+}
+.cloth-card:hover{
+    transform:scale(1.1);
+}
+.cloth-card>a{
+    text-decoration: none;
+    color: black;
+}
+.cloth-card>a>img{
+    width: 100%;
+}
+.card-des{
+    box-sizing: border-box;
+    padding: 16px;
+}
+.card-des>h2{
+    font-weight: 600;
+    margin: 0;
+    font-size: 17px;
+}
+.card-des>h4{
+    font-weight: 600;
+    opacity: 0.8;
+    margin: 0;
+    margin-top: 12px
+}
+.card-des>p{
+    margin: 0;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #009688;
+}
+#acc-card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+footer{
+    width: 100%;
+    background-color: #1c1b1e;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 4% 8%;
+}
+.footer-div{
+    padding-right: 100px;
+}
+.footer-div>a{
+    text-decoration: none;
+    color: white;
+    display: block;
+    margin-top: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 14px;
+    opacity: 0.8;
+}
+.footer-head{
+    font-weight: bolder;
+    font-size: 18px;
+    color:  #009688;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+
+html, body{
+	background: #eee;
+}
+
+.wrapper{
+  width:80%;
+  position:relative;
+  margin:8% auto 0;
+  
+}
+
+/**
+ * Padding is set relative to the width
+ * of the element, so here padding-top:60% is
+ * a percentage of the width. This allows us 
+ * to set the height as a ratio of the width
+ *
+ */
+.carousel{
+    width: 100%;
+	position: relative;
+	padding-top: 30%;
+    overflow: hidden;
+}
+
+.inner{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	left: 0;
+}
+
+/**
+ * ==========================
+ * Animation styles
+ * 
+ * Notes:
+ * 1. We use z-index to position active slides in-front 
+ * of non-active slides
+ * 2. We set right:0 and left:0 on .slide to provide us with
+ * a default positioning on both sides of the slide. This allows 
+ * us to trigger JS and CSS3 animations easily
+ *
+ */
+.slide{
+	width: 100%;
+	position: absolute;
+	top:0;
+	right:0;
+	left:0;
+	z-index: 1;
+	opacity: 0;
+}
+
+.slide.active,
+.slide.left,
+.slide.right{
+	z-index: 2;
+	opacity: 1;
+}
+
+/**
+ * ==========================
+ * JS animation styles
+ * 
+ * We use jQuery.animate to control the sliding animations
+ * when CSS3 animations are not available. In order for
+ * the next slide to slide in from the right, we need
+ * to change the left:0 property of the slide to left:auto
+ *
+ */
+
+.js-reset-left{left:auto}
+
+/**
+ * ==========================
+ * CSS animation styles
+ * 
+ * .slide.left and .slide.right set-up
+ * the to-be-animated slide so that it can slide
+ * into view. For example, a slide that is about 
+ * to slide in from the right will:
+ * 1. Be positioned to the right of the viewport (right:-100%)
+ * 2. Slide in when the style is superseded with a more specific style (right:0%)
+ *
+ */
+.slide.left{
+	left:-100%;
+	right:0;
+}
+
+.slide.right{
+	right:-100%;
+	left: auto;
+}
+
+.transition .slide.left{left:0%}
+.transition .slide.right{right:0%}
+
+/**
+ * The following classes slide the previously active
+ * slide out of view before positioning behind the 
+ * currently active slide
+ *
+ */
+.transition .slide.shift-right{right: 100%;left:auto}
+.transition .slide.shift-left{left: 100%;right:auto}
+
+/**
+ * This sets the CSS properties that will animate. We set the
+ * transition-duration property dynamically via JS.
+ * We use the browser's default transition-timing-function
+ * for simplicity's sake
+ * 
+ * It is important to note that we are using CodePen's inbuilt
+ * CSS3 property prefixer. For your own projects, you will need
+ * to prefix the transition and transform properties here to ensure
+ * reliable support across browsers
+ *
+ */
+.transition .slide{
+	transition-property: right, left, margin;
+}
+
+/**
+ * ==========================
+ * Indicators
+ *
+ */
+.indicators{
+  width:100%;
+  position: absolute;
+  bottom:0;
+  z-index: 4;
+  padding:0;
+  text-align: center;
+}
+
+.indicators li{
+	width: 13px;
+	height: 13px;
+	display: inline-block;
+	margin: 5px;
+	background: #fff;
+	list-style-type: none;
+	border-radius: 50%;
+  cursor:pointer;
+  transition:background 0.3s ease-out;
+}
+
+.indicators li.active{background:#93278f}
+
+.indicators li:hover{background-color:#2b2b2b}
+
+/**
+ * ==========================
+ * Arrows 
+ *
+ */
+.arrow{
+  width: 20px;
+  height: 20px;
+  position:absolute;
+  top:50%;
+  z-index:5;
+  border-top:3px solid #fff;
+  border-right:3px solid #fff;
+  cursor:pointer;
+  transition:border-color 0.3s ease-out;
+}
+
+.arrow:hover{border-color:#93278f}
+
+.arrow-left{
+  left:20px;
+  transform:rotate(225deg);
+}
+
+.arrow-right{
+  right:20px;
+  transform:rotate(45deg);
+}
+
+/**
+ * ==========================
+ * For demo purposes only
+ * 
+ * Please note that the styles below are used
+ * for the purposes of this demo only. There is no need
+ * to use these in any of your own projects
+ *
+ */
+.slide{
+	text-align:center;
+  padding-top:25%;
+  background-size:cover;
+}
+
+.slide:nth-child(1){
+    background-image:url(https://i.imgur.com/KtGxwnN.png);
+ }
+
+.slide:nth-child(2){
+	background-image:url(https://i.imgur.com/96OnkX7.png);
+}
+
+.slide:nth-child(3){
+	background-image:url(https://i.imgur.com/sfjg9R8.png);
+ }
+ .slide:nth-child(4){
+	background-image:url(https://imgur.com/p0wdadG.png);
+ }
+#overlay{
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+#sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    z-index: 10000;
+    padding-top: 95px;
+    padding-left: 10px;
+    background-color:#eee;
+    box-sizing: border-box;
+    display: none;
+}
+#login{
+    width: 100%;
+    height: 90px;
+    box-shadow: 0 2px 5px #ccc;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: absolute;
+    top:0;
+    left:0;
+}
+#btn-login{
+    background-color: #009688;
+    font-size: 13px;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: white;
+}
+.sidebar-icon{
+    text-decoration: none;
+    color: black;
+    font-weight: 600; 
+}
+
+ @media(max-width:600px){
+     #hamburger{
+         display: block;
+         cursor: pointer;
+         margin-right: 10px;
+     }
+     #topbar{
+         position: fixed;
+         flex-wrap: wrap;
+         padding: 16px 6% 16px 5%;
+     }
+     #logo{
+         font-size: 25px;
+         margin: 0px;
+     }
+     .cloth{
+         display: none;
+     }
+     #search{
+         width: unset;
+         max-width: 150px;
+     }
+     #shop-wrapper{
+         margin: 0px;
+     }
+     #right>img{
+         display: none;
+     }
+     #box{
+         padding: 10px 20px 8px 48px;
+     }
+     .wrapper{
+         width: 100%;
+         margin: 22% auto 0;
+     }
+     .cloth-acc-section{
+         padding-top: 0px;
+     }
+     .section-heading{
+         font-size: 23px;
+     }
+     #cloth-card-wrapper{
+         display: block;
+     }
+     .cloth-card{
+         max-width: 100%;
+         margin-left: auto;
+         margin-right: auto;
+     }
+     .cloth-card>a>img{
+         height: 250px;
+     }
+     .card-des{
+         padding: 14px;
+     }
+     .card-des>h2{
+         font-size: 17px;
+     }
+     .card-des>h4{
+         font-size: 15px;
+         margin-top: 10px;
+     }
+     #accessories{
+         margin-top: 60px;
+     }
+     footer{
+         flex-wrap: wrap;
+         justify-content: unset;
+     }
+     .footer-div{
+         padding: 0px;
+         width: 50%;
+     }
+     .footer-div>a{
+         font-size: 13px;
+     }
+ }  
