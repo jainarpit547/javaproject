@@ -17,7 +17,20 @@
 #tick{
     color:green;
     font-size: 200px;
+    animation: popup 1s;
 }
+@keyframes popup{
+    0%{
+        transform: scale(0);
+    }
+    60%{
+        transform: scale(1.25, 1.25);
+    }
+    100%{
+        transform: scale(1,1);
+    }
+}
+
 
 @media(max-width:600px){
     #tick{
